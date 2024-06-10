@@ -1,0 +1,11 @@
+<div class="main-container">
+    <form class="dropzone">
+        <label for="file" (dragover)="handleDragOver()" (drop)="handleDrop()">
+            <div>
+                <mat-icon aria-hidden="false" color="primary" aria-label="file upload icon" fontIcon="upload"></mat-icon>
+            </div>
+            <div>Drag and drop or browse to upload video</div>
+        </label>
+        <input type="file" id="file" fileInput (change)="onFileSelected()" />
+    </form>
+</div>

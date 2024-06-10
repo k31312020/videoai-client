@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+$theme-accent: mat.define-palette(mat.$indigo-palette);
+
+.main-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropzone {
+    display: flex;
+    justify-content: center;
+    height: 30vh;
+    width: 50vw;
+    text-align: center;
+    border: dashed 2px #909090;
+    border-radius: 6px;
+}
+
+.dropzone label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dropzone:hover {
+    border: dashed 2px mat.get-color-from-palette($theme-accent, default);
+}
+
+.dropzone input[type="file"] {
+    appearance: none;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
