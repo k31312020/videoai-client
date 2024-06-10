@@ -1,23 +1,4 @@
-@use '@angular/material' as mat;
-$theme-accent: mat.define-palette(mat.$deep-purple-palette);
-
 .root {
     height: 100%;
     background-image: linear-gradient(to right, #4427AB , #C144A0);
-}
-
-.menu {
-    display: flex;
-    justify-content: space-between;
-    background-color: mat.get-color-from-palette($theme-accent, default);
-    span {
-        color: white;
-    }
-    .separator {
-        padding: 0 1rem;
-    }
-    .option:hover {
-        scale: 1.02;
-        cursor: pointer;
-    }
 }

@@ -1,9 +1,8 @@
 <div class="container">
-    <mat-card *ngFor="let video of [1,2,3,4]">
+    <mat-card *ngFor="let video of videos">
         <mat-card-content>
             <video height="240" width="320" controls>
-                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    type="video/mp4" />
+                <source [src]="baseUrl+video.filename" type="video/mp4" />
             </video>
         </mat-card-content>
         <mat-card-footer class="video-footer">

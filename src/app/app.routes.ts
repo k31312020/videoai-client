@@ -2,23 +2,29 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { VideoUploaderComponent } from './components/video-uploader/video-uploader.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
-
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     {
         path: '',
+        component: HomeComponent,
+        children: [
+            {
+                path: 'upload',
+                component: VideoUploaderComponent
+            },
+            {
+                path: '',
+                component: VideoListComponent
+            },
+        ]
+    },
+    {
+        path: 'login',
         component: LoginComponent
-    },
-    {
-        path: 'upload-video',
-        component: VideoUploaderComponent
-    },
-    {
-        path: 'videos',
-        component: VideoListComponent
     },
     {
         path: '*',
-        component: LoginComponent
+        component: HomeComponent
     }
 ];
