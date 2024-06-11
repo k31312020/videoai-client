@@ -11,8 +11,25 @@ export class VideoService {
   getVideos() {
     const token = sessionStorage.getItem("token")
     if (token) {
-      const headers = new HttpHeaders({"Authorization": token});
-      return this.http.get("http://localhost:5000/v1/videos", {headers})
+      const headers = new HttpHeaders({ "Authorization": token });
+      return this.http.get("http://localhost:5000/v1/videos", { headers })
+    } else {
+      return
+    }
+  }
+
+  uploadVideo(video: { file: File, name?: string }) {
+    const token = sessionStorage.getItem("token")
+    if (token) {
+      const headers = new HttpHeaders({ "Authorization": token });
+      let data = new FormData()
+      data.append("filename", video.name || '')
+      data.append("file", video.file)
+      let formdata = data
+      return this.http.post('http://localhost:5000/v1/upload', formdata, {
+        headers, reportProgress: true,
+        observe: 'events'
+      })
     } else {
       return
     }

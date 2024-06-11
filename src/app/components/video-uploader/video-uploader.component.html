@@ -1,11 +1,23 @@
-<div class="main-container">
+<div class="container">
     <form class="dropzone">
         <label for="file" (dragover)="handleDragOver()" (drop)="handleDrop()">
             <div>
-                <mat-icon aria-hidden="false" color="primary" aria-label="file upload icon" fontIcon="upload"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="file upload icon" fontIcon="upload"></mat-icon>
             </div>
             <div>Drag and drop or browse to upload video</div>
         </label>
-        <input type="file" id="file" fileInput (change)="onFileSelected()" />
+        <input type="file" accept=".mp4" id="file" fileInput (change)="onFileSelected($event)" />
+        <mat-progress-bar *ngIf="progress" class="progress" mode="determinate" color="accent" [value]="progress"></mat-progress-bar>
     </form>
+    <div *ngIf="selected.file" class="selected-container">
+        <div>
+            <p>{{selected.name}}</p>
+            <p>{{selected.file.size / 1024 / 1024}} MB</p>
+        </div>
+        <mat-form-field>
+            <mat-label>Change filename</mat-label>
+            <input matInput placeholder="filename" [formControl]="filename"/>
+        </mat-form-field>
+        <button (click)="upload()" mat-raised-button>Upload</button>
+    </div>
 </div>

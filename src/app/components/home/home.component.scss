@@ -3,14 +3,23 @@ $theme-accent: mat.define-palette(mat.$deep-purple-palette);
 
 .menu {
     display: flex;
+    height: 3rem;
+    align-items: center;
     justify-content: space-between;
     background-color: mat.get-color-from-palette($theme-accent, default);
-    span {
-        color: white;
+    font-size: large;
+    color: white;
+    padding: 0 2rem;
+
+    a {
+        color: inherit;
+        text-decoration: none;
     }
+
     .separator {
         padding: 0 1rem;
     }
+
     .option:hover {
         scale: 1.02;
         cursor: pointer;
