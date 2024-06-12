@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { catchError, of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +17,14 @@ import { Router } from '@angular/router';
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private snackbar: MatSnackBar) {}
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -32,7 +34,12 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       const user = this.loginForm.value
-      this.userService.login({username: user.username!, password: user.password!}).subscribe(res => {
+      this.userService.login({username: user.username!, password: user.password!})
+      .pipe(catchError((err) => {
+        this.snackbar.open(err?.response?.message || 'Could not login!', "close", {duration: 3000});
+        return of({response: {token: ''}})
+      }))
+      .subscribe(res => {
         sessionStorage.setItem("token", res.response.token)
         this.router.navigateByUrl("")
       })
