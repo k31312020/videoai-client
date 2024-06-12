@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { getVideos } from '../../store/video.actions';
 import { Observable } from 'rxjs';
 import { Video } from '../../types/video';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-video-list',
@@ -17,7 +18,7 @@ import { Video } from '../../types/video';
 export class VideoListComponent {
   videos$: Observable<Video[]> = this.store.select(state => state.video.videos);
   constructor(private store: Store<{ video: {videos: Video[]} }>) {}
-  baseUrl = "http://localhost:5000/uploads/"
+  baseUrl = environment.staticUrl
   videos:any = []
   ngOnInit() {
     this.store.dispatch(getVideos())

@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
+  baseUrl = environment.baseUrl
 
   constructor(private http: HttpClient) { }
 
@@ -13,7 +15,7 @@ export class VideoService {
     const token = sessionStorage.getItem("token")
     if (token) {
       const headers = new HttpHeaders({ "Authorization": token });
-      return this.http.get("http://localhost:5000/v1/videos", { headers })
+      return this.http.get(`${this.baseUrl}/v1/videos`, { headers })
     } else {
       return new Observable<Object>()
     }
@@ -27,7 +29,7 @@ export class VideoService {
       data.append("filename", video.name || '')
       data.append("file", video.file)
       let formdata = data
-      return this.http.post('http://localhost:5000/v1/upload', formdata, {
+      return this.http.post(`${this.baseUrl}/v1/upload`, formdata, {
         headers, reportProgress: true,
         observe: 'events'
       })
