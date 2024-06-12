@@ -1,7 +1,7 @@
 <div class="container">
-    <mat-card *ngFor="let video of videos" class="video-card">
+    <mat-card *ngFor="let video of videos$ | async" class="video-card">
         <mat-card-content>
-            <video height="200" width="320" controls>
+            <video height="200" width="320" controls preload="none">
                 <source [src]="baseUrl+video.filename" type="video/mp4" />
             </video>
         </mat-card-content>

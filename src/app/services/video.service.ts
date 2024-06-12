@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class VideoService {
       const headers = new HttpHeaders({ "Authorization": token });
       return this.http.get("http://localhost:5000/v1/videos", { headers })
     } else {
-      return
+      return new Observable<Object>()
     }
   }
 
