@@ -36,7 +36,7 @@ export class LoginComponent {
       const user = this.loginForm.value
       this.userService.login({username: user.username!, password: user.password!})
       .pipe(catchError((err) => {
-        this.snackbar.open(err?.response?.message || 'Could not login!', "close", {duration: 3000});
+        this.snackbar.open(err?.response?.error || 'Could not login!', "close", {duration: 3000});
         return of({response: {token: ''}})
       }))
       .subscribe(res => {
