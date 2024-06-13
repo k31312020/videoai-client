@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #prod environment
-/environment/environment.production.ts
+environment.production.ts
