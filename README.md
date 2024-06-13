@@ -4,6 +4,12 @@ A simple video manager app
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
+## App Demo
+
+
+https://github.com/k31312020/videoai-client/assets/39820532/de2f166a-e08d-4f05-a462-269d8c0d5e0b
+
+
 ## Setup
 ```git clone https://github.com/k31312020/videoai-client.git```
 ## Install dependencies
