@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class UserService {
   baseUrl = environment.baseUrl
   constructor(private http: HttpClient) { }
-  login(user: {username: string, password: string}): Observable<{response: {token: string, message?: string}}> {
+  login(user: Partial<{username: string, password: string}>): Observable<{response: {token: string, message?: string}}> {
     return this.http.post<{response: {token: string, message?: string}}>(`${this.baseUrl}/v1/login`, user)
   }
   isAuthenticated(): boolean {

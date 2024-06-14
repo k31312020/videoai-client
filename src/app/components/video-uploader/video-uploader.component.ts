@@ -32,10 +32,10 @@ export class VideoUploaderComponent {
   constructor(private videoService: VideoService, private snackbar: MatSnackBar) {}
 
   handleDragOver() {
-
+    
   }
   handleDrop() {
-
+    
   }
 
   onFileSelected(e: Event) {
