@@ -3,7 +3,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { VideoService } from '../../services/video.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -19,7 +19,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatInputModule,
     CommonModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule
   ],
   templateUrl: './video-uploader.component.html',
   styleUrl: './video-uploader.component.scss'
@@ -31,16 +32,24 @@ export class VideoUploaderComponent {
 
   constructor(private videoService: VideoService, private snackbar: MatSnackBar) {}
 
-  handleDragOver() {
-    
+  handleDragOver(e: Event) {
+    e.preventDefault()
   }
-  handleDrop() {
-    
+
+  handleDrop(e: DragEvent) {
+    e.preventDefault()
+    if (e.dataTransfer?.files) {
+      this.updateFile(e.dataTransfer.files)
+    }
   }
 
   onFileSelected(e: Event) {
-    const target = e.target as HTMLInputElement;
-    const files = target.files as FileList;
+    const target = e.target as HTMLInputElement
+    const files = target.files as FileList
+    this.updateFile(files)
+  }
+
+  updateFile(files: FileList) {
     if (files.length) {
       this.selected = {
         file: files[0],

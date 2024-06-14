@@ -1,6 +1,6 @@
 <div class="container">
-    <form class="dropzone">
-        <label for="file" (dragover)="handleDragOver()" (drop)="handleDrop()">
+    <form class="dropzone" (dragover)="handleDragOver($event)" (drop)="handleDrop($event)">
+        <label for="file">
             <div>
                 <mat-icon aria-hidden="false" aria-label="file upload icon" fontIcon="upload"></mat-icon>
             </div>
